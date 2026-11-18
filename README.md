@@ -1,7 +1,7 @@
-# Software Factory
+# TypeScript Project Template
 
-A learning project for building reliable, scalable web applications with Three.js graphics.
-The foundation uses a TypeScript Nx monorepo with npm workspaces and executable quality checks.
+A starting point for web applications: a TypeScript Nx monorepo with npm workspaces and executable quality checks.
+Create a project from it with `gh repo create <name> --template RihardsJ/ts-project-template --clone`.
 The first local application, `apps/reference`, demonstrates a Three.js scene and its resource lifecycle.
 
 ## Prerequisites
@@ -32,8 +32,7 @@ npm run check
 | `npm run lint` | Run all Nx lint targets, including dependency rules. |
 | `npm run typecheck` | Check every configured project and the root configuration. |
 | `npm test` | Run all Nx test targets once. |
-| `npm run test:watch` | Watch the factory tests during development. |
-| `npm run build` | Build the factory tooling and reference application. |
+| `npm run build` | Build the reference application. |
 | `npm run dev` | Start the reference application at `http://127.0.0.1:4200`. |
 | `npm run browsers:install` | Install the Chromium browser used for smoke tests. |
 | `npm run e2e` | Build the reference application and run browser checks against its production preview. |
@@ -65,17 +64,16 @@ These tests do not establish compatibility with every physical GPU or browser.
 
 ## Architecture decisions
 
-Use TypeScript for maintained implementation code, including factory commands, generators, and applications.
+Use TypeScript for maintained implementation code, including tooling, generators, and applications.
 JavaScript configuration files remain type checked. JSON, YAML, shell scripts, and future shader files serve their respective tools.
 
 Keep related products in this monorepo while they share ownership and standards.
-If access or ownership requirements differ, future factory generators can target separate repositories.
+If access or ownership requirements differ, future generators can target separate repositories.
 Nx coordinates development tasks. It does not establish application scalability by itself.
 
 The npm workspace patterns are `apps/*`, `libs/*`, and `tools/*`.
-The existing project is `@software-factory/factory` in `tools/factory/`.
 The browser project is `reference` in `apps/reference/`.
-The root Nx project, `software-factory`, checks shared configuration files.
+The root Nx project, `ts-project-template`, checks shared configuration files.
 The root project disables automatic script discovery to prevent recursive task execution.
 Project scripts remain ordinary npm commands, coordinated by Nx.
 
@@ -91,8 +89,8 @@ Project scripts remain ordinary npm commands, coordinated by Nx.
 Give each new project one type tag and one runtime tag in its package's `nx.tags` field.
 The ESLint configuration enforces these dependency constraints.
 Use package entry points for imports between projects.
-The factory package uses Node.js module resolution and has no browser globals.
-Future browser applications must configure their own DOM types and bundler resolution.
+Node.js tooling packages use Node.js module resolution and have no browser globals.
+Browser applications configure their own DOM types and bundler resolution.
 
 Build one small reference application before extracting reusable runtime libraries or creating custom generators.
 Test future generators by installing, checking, and building their output in temporary workspaces.
@@ -162,10 +160,8 @@ Strict settings also check indexed access and optional properties.
 The root JavaScript configuration receives type checks through `checkJs`.
 ESLint checks code patterns, including unsafe operations that require type information.
 Vitest runs automated tests and supports future browser tooling.
-Factory tests verify toolchain integration.
 Reference application tests verify scene behaviour and browser rendering.
 
-The factory uses ES modules and Node.js module resolution.
 The reference application uses Vite and Three.js. A UI framework remains deferred.
 
 ## Use on the VM
@@ -199,14 +195,13 @@ This increment configures the agent integration. Continuous execution, supervisi
 apps/                   Deployable application workspaces
 apps/reference/         Local Three.js reference application
 libs/                   Future reusable runtime libraries
-tools/factory/          Factory workspace package, smoke test, and Node.js build
+tools/                  Future Node.js tooling workspaces
 nx.json                 Task coordination and local caching
 tsconfig.base.json      Shared strict compiler settings
 AGENTS.md               Repository guidance for agents
 CLAUDE.md               Claude Code instructions importing shared project guidance
 ```
 
-The factory entry point is intentionally empty until a feature requires executable factory behaviour.
 UI framework selection, shared libraries, custom generators, deployment, and package publication remain deferred.
 
 ## Known dependency limitation

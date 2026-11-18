@@ -1,21 +1,21 @@
-# Software Factory
+# TypeScript Project Template
 
 ## Purpose and scope
 
-This learning project will build reliable web applications with Three.js graphics.
-The workspace includes factory tooling and a local TypeScript, Vite, and Three.js reference application.
+This template sets up a TypeScript Nx workspace for web applications.
+The workspace includes a local TypeScript, Vite, and Three.js reference application as a working example.
 Deployment, service architecture, and shared runtime libraries remain deferred.
 
 ## Project map
 
-- `README.md`: setup, checks, and learning workflow.
+- `README.md`: setup, checks, and architecture decisions.
 - `CLAUDE.md`: Claude Code entry point importing this guidance.
 - `.claude/settings.json`: official Nx Claude plugin and sandbox configuration.
 - `apps/reference/`: the first browser application.
 - `apps/reference/tests/`: lifecycle unit tests and Playwright browser checks.
 - `apps/`: deployable application workspaces.
 - `libs/`: future reusable runtime workspaces.
-- `tools/factory/`: factory package, Node.js build, and toolchain smoke test.
+- `tools/`: future Node.js tooling workspaces.
 - `nx.json`: task coordination, shared inputs, and local caching.
 - `tsconfig.base.json`: shared strict compiler settings.
 - `eslint.config.mjs`: typed linting and dependency constraints.
@@ -33,12 +33,14 @@ npm run check -- --skipNxCache
 npm run lint
 npm run typecheck
 npm test
-npm run test:watch
 npm run build
 npm run e2e
 npm run nx -- show projects
 ```
 
+`npm run check` is the project's check command. It runs lint, type checks, unit tests, builds, and browser tests, and it must pass before any work counts as done.
+This file is the single place where the project's commands are recorded. Automation installed on top of this project, such as a software factory, reads its commands from here and must not assume them.
+When a command changes, update this section in the same change.
 No local services are currently required.
 When worker sockets are unavailable, prefix Nx commands with `NX_ISOLATE_PLUGINS=false`.
 
@@ -75,7 +77,7 @@ Keep project-specific rules outside the managed Nx block in `CLAUDE.md` so updat
 Preserve unrelated work.
 Use npm workspace packages under `apps/*`, `libs/*`, or `tools/*`.
 Give each project one type tag and one runtime tag.
-Applications consume libraries. Libraries must not consume applications or factory tooling.
+Applications consume libraries. Libraries must not consume applications or tooling.
 Keep browser code separate from Node.js tooling through dependency tags.
 Declare task inputs and outputs before relying on cached results.
 Keep full CI checks until affected-only execution has separate verification.

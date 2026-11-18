@@ -4,7 +4,7 @@ import type { ReferenceScene } from './scene.js';
 export function mountReferenceApp(root: HTMLElement): () => void {
   root.innerHTML = `
     <div class="shell">
-      <header class="masthead"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">sf</span> Software Factory</a><span class="edition">REFERENCE / 001</span></header>
+      <header class="masthead"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true">pt</span> Project Template</a><span class="edition">REFERENCE / 001</span></header>
       <main>
         <section class="introduction" aria-labelledby="page-title">
           <div><p class="eyebrow">A SMALL BEGINNING</p><h1 id="page-title">Make room<br>for possibility<span>.</span></h1></div>

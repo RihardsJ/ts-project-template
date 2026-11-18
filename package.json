@@ -1,8 +1,8 @@
 {
-  "name": "software-factory",
+  "name": "ts-project-template",
   "version": "0.1.0",
   "private": true,
-  "description": "A learning project for building reliable Three.js web applications.",
+  "description": "A TypeScript Nx workspace template for web applications.",
   "type": "module",
   "engines": {
     "node": ">=24.13.0 <25"
@@ -12,7 +12,6 @@
     "lint": "nx run-many -t lint --outputStyle=static",
     "typecheck": "nx run-many -t typecheck --outputStyle=static",
     "test": "nx run-many -t test --outputStyle=static",
-    "test:watch": "npm run test:watch --workspace=@software-factory/factory",
     "build": "nx run-many -t build --outputStyle=static",
     "check": "nx run-many -t lint typecheck test build e2e --outputStyle=static",
     "nx": "nx",

@@ -6,8 +6,8 @@ The first local application, `apps/reference`, demonstrates a Three.js scene and
 
 ## Prerequisites
 
-- Node.js 24.13.0, recorded in `.nvmrc`.
-- npm 11.6.2, recorded in `package.json`.
+- Node.js 22.12 or later, below 25. `.nvmrc` records 24.13.0, the version used for development.
+- npm 10 or 11. `package.json` records 11.6.2.
 - Git for version control.
 
 ## Install and verify
@@ -172,7 +172,7 @@ The reference application uses Vite and Three.js. A UI framework remains deferre
 
 ## Use on the VM
 
-From the cloned repository, select Node.js 24.13.0 and install dependencies:
+From the cloned repository, with a supported Node.js version, install dependencies:
 
 ```sh
 npm ci

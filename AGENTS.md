@@ -22,7 +22,8 @@ Deployment, service architecture, and shared runtime libraries remain deferred.
 
 ## Commands
 
-Use Node.js from `.nvmrc` and npm with `package-lock.json`.
+Use Node.js 22.12 or later, below 25, and npm with `package-lock.json`. `.nvmrc` records the development version.
+CI runs the checks on Node.js 22 and 24. Regenerate the lockfile with npm 10, because npm 10 rejects lockfiles written by npm 11.
 
 ```sh
 ./setup.sh

@@ -25,6 +25,7 @@ Deployment, service architecture, and shared runtime libraries remain deferred.
 Use Node.js from `.nvmrc` and npm with `package-lock.json`.
 
 ```sh
+./setup.sh
 npm ci
 npm run browsers:install
 npm run dev
@@ -41,6 +42,7 @@ npm run nx -- show projects
 `npm run check` is the project's check command. It runs lint, type checks, unit tests, builds, and browser tests, and it must pass before any work counts as done.
 This file is the single place where the project's commands are recorded. Automation installed on top of this project, such as a software factory, reads its commands from here and must not assume them.
 When a command changes, update this section in the same change.
+`./setup.sh` prepares a fresh copy in one step: it installs dependencies and the test browser, then runs the check command.
 No local services are currently required.
 When worker sockets are unavailable, prefix Nx commands with `NX_ISOLATE_PLUGINS=false`.
 

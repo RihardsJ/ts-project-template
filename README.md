@@ -19,7 +19,13 @@ nvm install
 nvm use
 ```
 
-Install dependencies and run all checks:
+Install dependencies and run all checks in one step:
+
+```sh
+./setup.sh
+```
+
+The script runs these commands, which also work separately:
 
 ```sh
 npm ci
